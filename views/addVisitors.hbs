@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+        <div class="list-group">
+          <a href="/logout" class="list-group-item list-group-item-action list-group-item-danger text-center">Left</a>
+        </div>
+        <form class="card-body cardbody-color p-lg-5" action="/add" method="POST">
+          <h2 class="text-center m-4">Add guests</h2>
+          <div class="mb-3">
+            <input type="text" class="form-control" name="name" placeholder="Name">
+          </div>
+          <div class="mb-3">
+            <input type="text" class="form-control" name="passport" placeholder="Passport">
+          </div>
+          <div class="mb-3">
+            <input type="text" class="form-control" name="region" placeholder="Region">
+          </div>
+          <div class="mb-3">
+            <label for="date_in">Date In: </label>
+            <input type="date" id="date_in" name="dateIn">
+          </div>
+          <div class="mb-3">
+            <label for="date_out">Date Out: </label>
+            <input type="date" id="date_out" name="dateOut">
+          </div>
+
+          <div class="text-center"><button type="submit" class="btn btn-primary px-5 mb-5 w-100">Add guest</button></div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="guest-list container col-md-8">
+  {{#if users}}
+    {{#each users}}
+      <div class="card m-3">
+        <div class="card-header">
+          {{region}}
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Name: {{name}}</h5>
+          <h6 class="card-title">DateIn: {{dateIn}}</h6>
+          <h6 class="card-title">DateOut: {{dateOut}}</h6>
+          <p class="card-text">Passport: {{passport}}</p>
+          <form class="d-grid" action="/{{_id}}/delete" method="post">  
+            <button type="submit" class="btn mt-3 btn-danger">Delete</button>
+          </form>
+
+        </div>
+      </div>
+    {{/each}}
+  {{/if}}
+  </div>
+</div>
